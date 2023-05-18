@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,25 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#ifndef ShrubberyCreationForm_HPP
+# define ShrubberyCreationForm_HPP
 
 # include "AForm.hpp"
+# include <fstream>
 
-class PresidentialPardonForm : public AForm
+class ShrubberyCreationForm : public AForm
 {
 private:
 	std::string	_target;
 public:
-	PresidentialPardonForm( void );
-	PresidentialPardonForm( PresidentialPardonForm const &);
-	virtual ~PresidentialPardonForm();
+	ShrubberyCreationForm( void );
+	ShrubberyCreationForm( ShrubberyCreationForm const &);
+	virtual ~ShrubberyCreationForm();
 
-	PresidentialPardonForm &	operator=( PresidentialPardonForm const & );
-	PresidentialPardonForm( std::string target);
+	ShrubberyCreationForm &	operator=( ShrubberyCreationForm const & );
+	ShrubberyCreationForm( std::string target);
 
 	virtual void	execute ( Bureaucrat const & ) const;
 	std::string		getTarget( void ) const;
+	class CannotCreateFileException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return ("file could not be created");
+			}
+	};
 };
 
-#endif // !PRESIDENTIALPARDONFORM_HPP
+#endif // !ShrubberyCreationForm_HPP

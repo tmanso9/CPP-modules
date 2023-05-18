@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:31 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/17 19:02:54 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:53:08 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ public:
 	void		incrementGrade(void);
 	void		decrementGrade(void);
 	void		signForm( AForm & );
+	void		executeForm( AForm const & );
 
 	class GradeTooHighException : public std::exception
 	{

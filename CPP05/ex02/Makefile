@@ -6,15 +6,17 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/05/17 19:12:32 by touteiro         ###   ########.fr        #
+#    Updated: 2023/05/18 18:05:45 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Bureaucrat
 CC = c++
-PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3 -Woverloaded-virtual
-SRC_FILE = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp
-INC_FILES = Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp
+PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+SRC_FILE = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp \
+			ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
+INC_FILES = Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp \
+			ShrubberyCreationForm.hpp RobotomyRequestForm.hpp
 
 SRC = $(addprefix src/, $(SRC_FILE))
 OBJ = $(addprefix obj/, $(SRC:.cpp=.o))

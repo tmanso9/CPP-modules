@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:25:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/17 19:02:22 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:00:47 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,21 @@ void	Bureaucrat::signForm( AForm & src )
 	}
 	
 }
+
+void	Bureaucrat::executeForm( AForm const & form )
+{
+	try
+	{
+		form.execute( *this );
+		std::cout << _name << " executed " << form.getName() << "." << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << _name << " couldn't execute " << form.getName() << " because " << e.what() << ".\n";
+	}
+	
+}
+
 
 std::ostream &	operator<<(std::ostream & out, Bureaucrat const & src )
 {

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:50:12 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/17 19:24:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:12:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ public:
 	virtual ~AForm();
 	
 	AForm( std::string, int, int);
-	bool		getSigned( void ) const;
-	std::string	getName( void ) const;
-	int			getToSign( void ) const;
-	int			getToExecute( void ) const;
-	void		setSigned( bool );
-	void		setName( std::string );
-	void		setToSign( int );
-	void		setToExecute( int );
-	virtual void		beSigned( Bureaucrat );
+	bool			getSigned( void ) const;
+	std::string		getName( void ) const;
+	int				getToSign( void ) const;
+	int				getToExecute( void ) const;
+	void			setSigned( bool );
+	void			setName( std::string );
+	void			setToSign( int );
+	void			setToExecute( int );
+	void			beSigned( Bureaucrat );
+	virtual void	execute ( Bureaucrat const & ) const = 0;
+	bool			canExecute( Bureaucrat ) const;
 
 	class GradeTooHighException : public std::exception
 	{
@@ -59,6 +61,14 @@ public:
 			virtual const char* what() const throw()
 			{
 				return ("grade is too low");
+			}
+	};
+	class FormNotSignedException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return ("form is not signed");
 			}
 	};
 };

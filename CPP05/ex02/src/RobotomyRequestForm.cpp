@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,31 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm( void )
+RobotomyRequestForm::RobotomyRequestForm( void )
 {
 	_target = "/";
 	this->setSigned(false);
-	this->setName("Presidential pardon");
-	this->setToSign(25);
-	this->setToExecute(5);
+	this->setName("Robotomy request");
+	this->setToSign(72);
+	this->setToExecute(45);
+	srand(time(0));
 }
 
-PresidentialPardonForm::PresidentialPardonForm( std::string target )
+RobotomyRequestForm::RobotomyRequestForm( std::string target )
 {
 	_target = target;
 	this->setSigned(false);
-	this->setName("Presidential pardon");
-	this->setToSign(25);
-	this->setToExecute(5);
+	this->setName("Robotomy request");
+	this->setToSign(72);
+	this->setToExecute(45);
+	srand(time(0));
 }
 
-PresidentialPardonForm::~PresidentialPardonForm()
+RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm( PresidentialPardonForm const & src)
+RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const & src)
 {
 	_target = src.getTarget();
 	this->setSigned(src.getSigned());
@@ -43,7 +45,7 @@ PresidentialPardonForm::PresidentialPardonForm( PresidentialPardonForm const & s
 	this->setToExecute(src.getToExecute());
 }
 
-PresidentialPardonForm &	PresidentialPardonForm::operator=( PresidentialPardonForm const & src )
+RobotomyRequestForm &	RobotomyRequestForm::operator=( RobotomyRequestForm const & src )
 {
 	this->_target = src.getTarget();
 	this->setSigned(src.getSigned());
@@ -53,13 +55,20 @@ PresidentialPardonForm &	PresidentialPardonForm::operator=( PresidentialPardonFo
 	return *this;
 }
 
-std::string		PresidentialPardonForm::getTarget( void ) const
+std::string		RobotomyRequestForm::getTarget( void ) const
 {
 	return _target;
 }
 
-void	PresidentialPardonForm::execute ( Bureaucrat const & executor ) const
+void	RobotomyRequestForm::execute ( Bureaucrat const & executor ) const
 {
 	if (this->canExecute( executor ))
-		std::cout << "Zaphod Beeblebrox pardoned " << _target << std::endl;
+	{
+		std::cout << "**drill drill**" << std::endl;
+		int robot = rand() - (RAND_MAX / 2);
+		if (robot >= 0)
+			std::cout << _target << " has been robotomized." << std::endl;
+		else
+			std::cout << "Robotomy has failed." << std::endl;
+	}
 }
