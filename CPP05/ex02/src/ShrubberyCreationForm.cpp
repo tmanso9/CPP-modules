@@ -13,21 +13,17 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm( void )
+	:
+		AForm("ShrubberyCreationForm", 145, 137),
+		_target("default")
 {
-	_target = "/";
-	this->setSigned(false);
-	this->setName("Shrubbery creation");
-	this->setToSign(145);
-	this->setToExecute(137);
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( std::string target )
+	:
+		AForm("ShrubberyCreationForm", 145, 137),
+		_target(target)
 {
-	_target = target;
-	this->setSigned(false);
-	this->setName("Shrubbery creation");
-	this->setToSign(145);
-	this->setToExecute(137);
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
@@ -35,21 +31,15 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm const & src)
+	:
+		AForm("ShrubberyCreationForm", 145, 137),
+		_target(src.getTarget())
 {
-	_target = src.getTarget();
-	this->setSigned(src.getSigned());
-	this->setName(src.getName());
-	this->setToSign(src.getToSign());
-	this->setToExecute(src.getToExecute());
 }
 
 ShrubberyCreationForm &	ShrubberyCreationForm::operator=( ShrubberyCreationForm const & src )
 {
 	this->_target = src.getTarget();
-	this->setSigned(src.getSigned());
-	this->setName(src.getName());
-	this->setToSign(src.getToSign());
-	this->setToExecute(src.getToExecute());
 	return *this;
 }
 
@@ -58,41 +48,43 @@ std::string		ShrubberyCreationForm::getTarget( void ) const
 	return _target;
 }
 
-void	ShrubberyCreationForm::execute ( Bureaucrat const & executor ) const
+const char* ShrubberyCreationForm::CannotCreateFileException::what() const throw()
 {
-	if (this->canExecute( executor ))
-	{
-		std::ofstream	outfile((_target + "_shrubbery").c_str(), std::ofstream::trunc);
-		if (!outfile)
-			throw CannotCreateFileException();
-		outfile << "                                                         .\n \
-                                              .         ;  \n \
-                 .              .              ;%     ;;   \n \
-                   ,           ,                :;%  %;   \n \
-                    :         ;                   :;%;'     .,   \n \
-           ,.        %;     %;            ;        %;'    ,;\n \
-             ;       ;%;  %%;        ,     %;    ;%;    ,%'\n \
-              %;       %;%;      ,  ;       %;  ;%;   ,%;' \n \
-               ;%;      %;        ;%;        % ;%;  ,%;'\n \
-                `%;.     ;%;     %;'         `;%%;.%;'\n \
-                 `:;%.    ;%%. %@;        %; ;@%;%'\n \
-                    `:%;.  :;bd%;          %;@%;'\n \
-                      `@%:.  :;%.         ;@@%;'   \n \
-                        `@%.  `;@%.      ;@@%;         \n \
-                          `@%%. `@%%    ;@@%;        \n \
-                            ;@%. :@%%  %@@%;       \n \
-                              %@bd%%%bd%%:;     \n \
-                                #@%%%%%:;;\n \
-                                %@@%%%::;\n \
-                                %@@@%(o);  . '         \n \
-                                %@@@o%;:(.,'         \n \
-                            `.. %@@@o%::;         \n \
-                               `)@@@o%::;         \n \
-                                %@@(o)::;        \n \
-                               .%@@@@%::;         \n \
-                               ;%@@@@%::;.          \n \
-                              ;%@@@@%%:;;;. \n \
-                          ...;%@@@@@%%:;;;;,..    Gilo97" << std::endl;
-		outfile.close();
-	}
+	return ("file could not be created");
+}
+
+void	ShrubberyCreationForm::execution ( void ) const
+{
+	std::ofstream	outfile((_target + "_shrubbery").c_str(), std::ofstream::trunc);
+	if (!outfile)
+		throw CannotCreateFileException();
+	outfile << "                                                         .\n \
+											.         ;  \n \
+				.              .              ;%     ;;   \n \
+				,           ,                :;%  %;   \n \
+				:         ;                   :;%;'     .,   \n \
+		,.        %;     %;            ;        %;'    ,;\n \
+			;       ;%;  %%;        ,     %;    ;%;    ,%'\n \
+			%;       %;%;      ,  ;       %;  ;%;   ,%;' \n \
+			;%;      %;        ;%;        % ;%;  ,%;'\n \
+			`%;.     ;%;     %;'         `;%%;.%;'\n \
+				`:;%.    ;%%. %@;        %; ;@%;%'\n \
+				`:%;.  :;bd%;          %;@%;'\n \
+					`@%:.  :;%.         ;@@%;'   \n \
+					`@%.  `;@%.      ;@@%;         \n \
+						`@%%. `@%%    ;@@%;        \n \
+						;@%. :@%%  %@@%;       \n \
+							%@bd%%%bd%%:;     \n \
+							#@%%%%%:;;\n \
+							%@@%%%::;\n \
+							%@@@%(o);  . '         \n \
+							%@@@o%;:(.,'         \n \
+						`.. %@@@o%::;         \n \
+							`)@@@o%::;         \n \
+							%@@(o)::;        \n \
+							.%@@@@%::;         \n \
+							;%@@@@%::;.          \n \
+							;%@@@@%%:;;;. \n \
+						...;%@@@@@%%:;;;;,..    Gilo97" << std::endl;
+	outfile.close();
 }

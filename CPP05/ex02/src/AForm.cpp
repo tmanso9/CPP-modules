@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:09:15 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/18 17:59:17 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:53:54 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ AForm::~AForm()
 AForm::AForm( std::string name, int toSign, int toExecute )
 	:
 		_name(name),
-		_signed(false)
+		_signed(false),
+		_toSign(toSign),
+		_toExecute(toExecute)
 {
 	if (toSign < 1 || toExecute < 1)
 		throw GradeTooHighException();
 	if (toSign > 150 || toExecute > 150)
 		throw GradeTooLowException();
-	_toSign = toSign;
-	_toExecute = toExecute;
 }
 
 std::string	AForm::getName( void ) const
@@ -80,26 +80,6 @@ int	AForm::getToExecute( void ) const
 	return _toExecute;
 }
 
-void	AForm::setSigned( bool isSigned )
-{
-	_signed = isSigned;
-}
-
-void	AForm::setName( std::string name )
-{
-	_name = name;
-}
-
-void	AForm::setToSign( int toSign )
-{
-	_toSign = toSign;
-}
-
-void	AForm::setToExecute( int toExecute )
-{
-	_toExecute = toExecute;
-}
-
 void	AForm::beSigned( Bureaucrat src )
 {
 	if (src.getGrade() > _toSign)
@@ -107,19 +87,28 @@ void	AForm::beSigned( Bureaucrat src )
 	_signed = true;
 }
 
-bool	AForm::canExecute( Bureaucrat src ) const
+const char*	AForm::GradeTooHighException::what() const throw()
+{
+	return ("grade is too high");
+}
+
+const char*	AForm::GradeTooLowException::what() const throw()
+{
+	return ("grade is too low");
+}
+
+const char*	AForm::FormNotSignedException::what() const throw()
+{
+	return ("form is not signed");
+}
+
+void	AForm::execute( const Bureaucrat & src ) const
 {
 	if (!_signed)
-	{
 		throw FormNotSignedException();
-		return false;
-	}
 	if ( src.getGrade() > _toExecute)
-	{
 		throw GradeTooLowException();
-		return false;
-	}
-	return true;
+	execution();
 }
 
 std::ostream & operator<<( std::ostream & out, AForm const & src)

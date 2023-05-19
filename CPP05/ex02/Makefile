@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/05/18 18:05:45 by touteiro         ###   ########.fr        #
+#    Updated: 2023/05/19 14:00:19 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,10 @@ clean:
 	@rm -rf $(OBJ)
 	@rm -rf obj
 	@echo "\033[31mTemporary object files deleted\033[0m"
+
+shrubless:
+	@rm -rf *shrubbery
+	@echo "\033[31mShrub files deleted\033[0m"
 
 fclean: clean
 	@rm -rf $(NAME)

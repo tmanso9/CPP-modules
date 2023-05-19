@@ -20,23 +20,22 @@ class ShrubberyCreationForm : public AForm
 {
 private:
 	std::string	_target;
-public:
 	ShrubberyCreationForm( void );
+protected:
+	virtual void	execution ( void ) const;
+
+public:
 	ShrubberyCreationForm( ShrubberyCreationForm const &);
 	virtual ~ShrubberyCreationForm();
 
 	ShrubberyCreationForm &	operator=( ShrubberyCreationForm const & );
 	ShrubberyCreationForm( std::string target);
 
-	virtual void	execute ( Bureaucrat const & ) const;
 	std::string		getTarget( void ) const;
 	class CannotCreateFileException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("file could not be created");
-			}
+			virtual const char* what() const throw();
 	};
 };
 

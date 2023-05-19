@@ -13,23 +13,17 @@
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm( void )
+	:
+		AForm("RobotomyRequestForm", 72, 54),
+		_target("default")
 {
-	_target = "/";
-	this->setSigned(false);
-	this->setName("Robotomy request");
-	this->setToSign(72);
-	this->setToExecute(45);
-	srand(time(0));
 }
 
 RobotomyRequestForm::RobotomyRequestForm( std::string target )
+	:
+		AForm("RobotomyRequestForm", 72, 54),
+		_target(target)
 {
-	_target = target;
-	this->setSigned(false);
-	this->setName("Robotomy request");
-	this->setToSign(72);
-	this->setToExecute(45);
-	srand(time(0));
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -37,21 +31,15 @@ RobotomyRequestForm::~RobotomyRequestForm()
 }
 
 RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const & src)
+	:
+		AForm("RobotomyRequestForm", 72, 54),
+		_target(src.getTarget())
 {
-	_target = src.getTarget();
-	this->setSigned(src.getSigned());
-	this->setName(src.getName());
-	this->setToSign(src.getToSign());
-	this->setToExecute(src.getToExecute());
 }
 
 RobotomyRequestForm &	RobotomyRequestForm::operator=( RobotomyRequestForm const & src )
 {
 	this->_target = src.getTarget();
-	this->setSigned(src.getSigned());
-	this->setName(src.getName());
-	this->setToSign(src.getToSign());
-	this->setToExecute(src.getToExecute());
 	return *this;
 }
 
@@ -60,15 +48,12 @@ std::string		RobotomyRequestForm::getTarget( void ) const
 	return _target;
 }
 
-void	RobotomyRequestForm::execute ( Bureaucrat const & executor ) const
+void	RobotomyRequestForm::execution ( void ) const
 {
-	if (this->canExecute( executor ))
-	{
-		std::cout << "**drill drill**" << std::endl;
-		int robot = rand() - (RAND_MAX / 2);
-		if (robot >= 0)
-			std::cout << _target << " has been robotomized." << std::endl;
-		else
-			std::cout << "Robotomy has failed." << std::endl;
-	}
+	static int	result;
+	std::string	outcomes[2] = \
+				{" has been robotomized.", "'s robotomy has failed."};
+
+	std::cout << "**drill drill**" << std::endl;
+	std::cout << _target << outcomes[result++ % 2] << std::endl;
 }

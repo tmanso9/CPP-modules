@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:50:12 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/18 16:12:38 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:35:20 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,49 +27,38 @@ private:
 	bool				_signed;
 	int					_toSign;
 	int					_toExecute;
-	
-public:
 	AForm( void );
+
+protected:
+	AForm( std::string, int, int);
 	AForm( AForm const &);
 	AForm & operator=( AForm const & );
-	virtual ~AForm();
+	virtual void		execution ( ) const = 0;
 	
-	AForm( std::string, int, int);
-	bool			getSigned( void ) const;
-	std::string		getName( void ) const;
-	int				getToSign( void ) const;
-	int				getToExecute( void ) const;
-	void			setSigned( bool );
-	void			setName( std::string );
-	void			setToSign( int );
-	void			setToExecute( int );
-	void			beSigned( Bureaucrat );
-	virtual void	execute ( Bureaucrat const & ) const = 0;
-	bool			canExecute( Bureaucrat ) const;
+public:
+	virtual ~AForm();
+	virtual bool			getSigned( void ) const;
+	virtual std::string		getName( void ) const;
+	virtual int				getToSign( void ) const;
+	virtual int				getToExecute( void ) const;
+	
+	virtual void			beSigned( Bureaucrat );
+	void					execute ( Bureaucrat const & ) const;
 
 	class GradeTooHighException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("grade is too high");
-			}
+			virtual const char* what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("grade is too low");
-			}
+			virtual const char* what() const throw();
 	};
 	class FormNotSignedException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("form is not signed");
-			}
+			virtual const char* what() const throw();
 	};
 };
 
