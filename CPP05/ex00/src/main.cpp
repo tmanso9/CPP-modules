@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/17 14:40:59 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:27:35 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int	main(void)
 			LOG("\033[1;28mConstruction successful! Printing info:\033[0;m");
 			std::cout << Marvin;
 		}
-		catch(const std::exception& e)
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "Construction failed because " << e.what() << ".\n";
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << "Construction failed because " << e.what() << ".\n";
 		}
@@ -41,7 +45,11 @@ int	main(void)
 			LOG("\033[1;28mConstruction successful! Printing info:\033[0;m");
 			std::cout << Marvin;
 		}
-		catch(const std::exception& e)
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "Construction failed because " << e.what() << ".\n";
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << "Construction failed because " << e.what() << ".\n";
 		}
@@ -60,12 +68,20 @@ int	main(void)
 				LOG("Managed to increment grade");
 				std::cout << Marvin;
 			}
-			catch(const std::exception& e)
+			catch(Bureaucrat::GradeTooLowException &e)
 			{
-				std::cerr << "Incrementation failed because "  << e.what() << ".\n";
+				std::cerr << "Incrementation failed because " << e.what() << ".\n";
+			}
+			catch(Bureaucrat::GradeTooHighException &e)
+			{
+				std::cerr << "Incrementation failed because " << e.what() << ".\n";
 			}
 		}
-		catch(const std::exception& e)
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "Construction failed because " << e.what() << ".\n";
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << "Construction failed because " << e.what() << ".\n";
 		}
@@ -84,12 +100,20 @@ int	main(void)
 				LOG("Managed to decrement grade");
 				std::cout << Marvin;
 			}
-			catch(const std::exception& e)
+			catch(Bureaucrat::GradeTooLowException &e)
 			{
-				std::cerr << "Decrementation failed because "  << e.what() << ".\n";
+				std::cerr << "Decrementation failed because " << e.what() << ".\n";
+			}
+			catch(Bureaucrat::GradeTooHighException &e)
+			{
+				std::cerr << "Decrementation failed because " << e.what() << ".\n";
 			}
 		}
-		catch(const std::exception& e)
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "Construction failed because " << e.what() << ".\n";
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << "Construction failed because " << e.what() << ".\n";
 		}
@@ -108,9 +132,13 @@ int	main(void)
 				LOG("Managed to increment grade");
 				std::cout << Marvin;
 			}
-			catch(const std::exception& e)
+			catch(Bureaucrat::GradeTooLowException &e)
 			{
-				std::cerr << "Incrementation failed because "  << e.what() << ".\n";
+				std::cerr << "Incrementation failed because " << e.what() << ".\n";
+			}
+			catch(Bureaucrat::GradeTooHighException &e)
+			{
+				std::cerr << "Incrementation failed because " << e.what() << ".\n";
 			}
 			try
 			{
@@ -118,13 +146,21 @@ int	main(void)
 				LOG("Managed to decrement grade");
 				std::cout << Marvin;
 			}
-			catch(const std::exception& e)
+			catch(Bureaucrat::GradeTooLowException &e)
 			{
-				std::cerr << e.what() << '\n';
+				std::cerr << "Decrementation failed because " << e.what() << ".\n";
+			}
+			catch(Bureaucrat::GradeTooHighException &e)
+			{
+				std::cerr << "Decrementation failed because " << e.what() << ".\n";
 			}
 			
 		}
-		catch(const std::exception& e)
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "Construction failed because " << e.what() << ".\n";
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << "Construction failed because " << e.what() << ".\n";
 		}
