@@ -50,10 +50,11 @@ std::string		RobotomyRequestForm::getTarget( void ) const
 
 void	RobotomyRequestForm::execution ( void ) const
 {
-	static int	result;
 	std::string	outcomes[2] = \
 				{" has been robotomized.", "'s robotomy has failed."};
 
 	std::cout << "**drill drill**" << std::endl;
 	std::cout << _target << outcomes[result++ % 2] << std::endl;
 }
+
+int RobotomyRequestForm::result = 0;

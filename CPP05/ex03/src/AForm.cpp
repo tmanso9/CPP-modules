@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:09:15 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 15:03:56 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:50:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ AForm::AForm( void )
 		_toSign(1),
 		_toExecute(1)
 {
-	// LOG("Form void constructor called");
+	// LOG("AForm default constructor called");
 }
 
 AForm::AForm( AForm const & src)
@@ -34,10 +34,7 @@ AForm::AForm( AForm const & src)
 
 AForm & AForm::operator=( AForm const & src )
 {
-	this->_name = src.getName();
 	this->_signed = src.getSigned();
-	this->_toSign = src.getToSign();
-	this->_toExecute = src.getToExecute();
 
 	return *this;
 }
@@ -54,6 +51,7 @@ AForm::AForm( std::string name, int toSign, int toExecute )
 		_toSign(toSign),
 		_toExecute(toExecute)
 {
+	// std::cout << "Constructor called for Aform " << name << "." << std::endl;
 	if (toSign < 1 || toExecute < 1)
 		throw GradeTooHighException();
 	if (toSign > 150 || toExecute > 150)
@@ -80,7 +78,7 @@ int	AForm::getToExecute( void ) const
 	return _toExecute;
 }
 
-void	AForm::beSigned( Bureaucrat src )
+void	AForm::beSigned( Bureaucrat const & src )
 {
 	if (src.getGrade() > _toSign)
 		throw GradeTooLowException();

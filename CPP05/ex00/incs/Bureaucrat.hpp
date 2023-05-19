@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:31 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 12:35:23 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:08:07 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 class Bureaucrat
 {
 private:
-	std::string	_name;
-	int			_grade;
+	const std::string	_name;
+	int					_grade;
 	Bureaucrat( void );
 public:
 	Bureaucrat( Bureaucrat const & );

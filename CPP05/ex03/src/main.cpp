@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 15:15:22 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:22:09 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@ int	main(void)
 		{
 			std::cerr << "Bureaucrat construction failed because " << e.what() << ".\n";
 		}
-		catch(ShrubberyCreationForm::CannotCreateFileException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
-		}
-		catch(AForm::FormNotSignedException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
-		}
 		catch(AForm::VoidFormException& e)
 		{
 			std::cerr << e.what() << ".\n";
@@ -62,7 +54,7 @@ int	main(void)
 		try
 		{
 			AForm	*rrf;
-			rrf = whoCares.makeForm("robotomy request", "Daemon");
+			rrf = whoCares.makeForm("robotomy request", "Pencil");
 			if (!rrf)
 				throw AForm::VoidFormException();
 			std::cout << *rrf;
@@ -79,14 +71,6 @@ int	main(void)
 		{
 			std::cerr << "Bureaucrat construction failed because " << e.what() << ".\n";
 		}
-		catch(ShrubberyCreationForm::CannotCreateFileException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
-		}
-		catch(AForm::FormNotSignedException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
-		}
 		catch(AForm::VoidFormException& e)
 		{
 			std::cerr << e.what() << ".\n";
@@ -98,7 +82,7 @@ int	main(void)
 		try
 		{
 			AForm	*ppd;
-			ppd = whoCares.makeForm("presidential pardon", "Daemon");
+			ppd = whoCares.makeForm("presidential pardon", "Judas");
 			if (!ppd)
 				throw AForm::VoidFormException();
 			std::cout << *ppd;
@@ -115,14 +99,6 @@ int	main(void)
 		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << "Bureaucrat construction failed because " << e.what() << ".\n";
-		}
-		catch(ShrubberyCreationForm::CannotCreateFileException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
-		}
-		catch(AForm::FormNotSignedException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
 		}
 		catch(AForm::VoidFormException& e)
 		{
@@ -152,14 +128,6 @@ int	main(void)
 		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << "Bureaucrat construction failed because " << e.what() << ".\n";
-		}
-		catch(ShrubberyCreationForm::CannotCreateFileException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
-		}
-		catch(AForm::FormNotSignedException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
 		}
 		catch(AForm::VoidFormException& e)
 		{

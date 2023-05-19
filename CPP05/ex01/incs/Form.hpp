@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:50:12 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 12:38:32 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:21:58 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ class Bureaucrat;
 class Form
 {
 private:
-	std::string			_name;
+	const std::string	_name;
 	bool				_signed;
-	int					_toSign;
-	int					_toExecute;
+	const int			_toSign;
+	const int			_toExecute;
 	Form( void );
 	
 public:
@@ -41,7 +41,7 @@ public:
 	int			getToSign( void ) const;
 	int			getToExecute( void ) const;
 	
-	void		beSigned( Bureaucrat );
+	void		beSigned( Bureaucrat const & );
 
 	class GradeTooHighException : public std::exception
 	{

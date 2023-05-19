@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:25:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 12:35:16 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:12:12 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ Bureaucrat::Bureaucrat( Bureaucrat const & src ) : _name(src.getName()), _grade(
 Bureaucrat & Bureaucrat::operator=( Bureaucrat const & src )
 {
 	LOG("Bureaucrat assignment overload called");
-	_name = src.getName();
 	_grade = src.getGrade();
 	if (_grade < 1)
 		throw GradeTooHighException();
@@ -61,16 +60,16 @@ int	Bureaucrat::getGrade(void) const
 
 void Bureaucrat::incrementGrade(void)
 {
-	_grade--;
-	if (_grade < 1)
+	if (_grade <= 1)
 		throw GradeTooHighException();
+	_grade--;
 }
 
 void Bureaucrat::decrementGrade(void)
 {
-	_grade++;
-	if (_grade > 150)
+	if (_grade >= 150)
 		throw GradeTooLowException();
+	_grade++;
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()

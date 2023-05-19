@@ -32,11 +32,6 @@ public:
 	ShrubberyCreationForm( std::string target);
 
 	std::string		getTarget( void ) const;
-	class CannotCreateFileException : public std::exception
-	{
-		public:
-			virtual const char* what() const throw();
-	};
 };
 
 #endif // !ShrubberyCreationForm_HPP

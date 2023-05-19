@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:09:15 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 12:57:37 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:25:48 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Form::Form( void )
 		_toSign(1),
 		_toExecute(1)
 {
-	// LOG("Form default constructor called");
+	LOG("Form default constructor called");
 }
 
 Form::Form( Form const & src)
@@ -29,22 +29,19 @@ Form::Form( Form const & src)
 		_toSign(src.getToSign()),
 		_toExecute(src.getToExecute())
 {
-	// LOG("Form copy constructor called");
+	LOG("Form copy constructor called");
 }
 
 Form & Form::operator=( Form const & src )
 {
-	this->_name = src.getName();
 	this->_signed = src.getSigned();
-	this->_toSign = src.getToSign();
-	this->_toExecute = src.getToExecute();
 
 	return *this;
 }
 
 Form::~Form()
 {
-	// std::cout << "Destructor called for " << _name << " form" << std::endl;
+	std::cout << "Destructor called for form " << _name << "." << std::endl;
 }
 
 Form::Form( std::string name, int toSign, int toExecute )
@@ -54,7 +51,7 @@ Form::Form( std::string name, int toSign, int toExecute )
 		_toSign(toSign),
 		_toExecute(toExecute)
 {
-	// LOG("Form named constructor called");
+	std::cout << "Constructor called for form " << _name << "." << std::endl;
 	if (toSign < 1 || toExecute < 1)
 		throw GradeTooHighException();
 	if (toSign > 150 || toExecute > 150)
@@ -81,7 +78,7 @@ int	Form::getToExecute( void ) const
 	return _toExecute;
 }
 
-void	Form::beSigned( Bureaucrat src )
+void	Form::beSigned( Bureaucrat const & src )
 {
 	if (src.getGrade() > _toSign)
 		throw GradeTooLowException();

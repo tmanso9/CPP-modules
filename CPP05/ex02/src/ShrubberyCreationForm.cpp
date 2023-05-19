@@ -48,16 +48,14 @@ std::string		ShrubberyCreationForm::getTarget( void ) const
 	return _target;
 }
 
-const char* ShrubberyCreationForm::CannotCreateFileException::what() const throw()
-{
-	return ("file could not be created");
-}
-
 void	ShrubberyCreationForm::execution ( void ) const
 {
 	std::ofstream	outfile((_target + "_shrubbery").c_str(), std::ofstream::trunc);
 	if (!outfile)
-		throw CannotCreateFileException();
+	{
+		std::cerr << "Form is not executed because file could not be created." << std::endl;
+		return ;
+	}
 	outfile << "                                                         .\n \
 											.         ;  \n \
 				.              .              ;%     ;;   \n \

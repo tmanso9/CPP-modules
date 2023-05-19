@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:31 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 13:10:05 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:28:35 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ class AForm;
 class Bureaucrat
 {
 private:
-	std::string	_name;
-	int			_grade;
+	const std::string	_name;
+	int					_grade;
 	Bureaucrat( void );
 public:
 	Bureaucrat( Bureaucrat const & );
-	Bureaucrat & operator=( Bureaucrat const & );
 	~Bureaucrat();
+	Bureaucrat &	operator=( Bureaucrat const & );
 	
 	Bureaucrat( std::string, int );
 	

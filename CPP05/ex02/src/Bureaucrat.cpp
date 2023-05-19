@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:25:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 13:13:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:29:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 Bureaucrat::Bureaucrat( void ) : _name("default"), _grade(150)
 {
-	// LOG("\033[0;32mVoid Bureaucrat constructor called\033[0;m");
+	LOG("\033[0;32mVoid Bureaucrat constructor called\033[0;m");
 }
 
 Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name), _grade(grade)
 {
-	// std::cout << "\033[0;32mNamed constructor called for " << name << "\033[0;m" << std::endl;
+	std::cout << "\033[0;32mNamed constructor called for " << name << "\033[0;m" << std::endl;
 	if (grade < 1)
 		throw GradeTooHighException();
 	if (grade > 150)
@@ -28,13 +28,12 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name), _grade(grad
 
 Bureaucrat::Bureaucrat( Bureaucrat const & src ) : _name(src.getName()), _grade(src.getGrade())
 {
-	// LOG("\033[0;32mBureaucrat copy constructor called\033[0;m");
+	LOG("\033[0;32mBureaucrat copy constructor called\033[0;m");
 }
 
 Bureaucrat & Bureaucrat::operator=( Bureaucrat const & src )
 {
-	// LOG("Bureaucrat assignment overload called");
-	_name = src.getName();
+	LOG("Bureaucrat assignment overload called");
 	_grade = src.getGrade();
 	if (_grade < 1)
 		throw GradeTooHighException();
@@ -46,7 +45,7 @@ Bureaucrat & Bureaucrat::operator=( Bureaucrat const & src )
 
 Bureaucrat::~Bureaucrat()
 {
-	// LOG("\033[0;31mBureaucrat destructor called\033[0;m");
+	LOG("\033[0;31mBureaucrat destructor called\033[0;m");
 }
 
 std::string	Bureaucrat::getName(void) const
@@ -61,16 +60,16 @@ int	Bureaucrat::getGrade(void) const
 
 void Bureaucrat::incrementGrade(void)
 {
-	_grade--;
-	if (_grade < 1)
+	if (_grade <= 1)
 		throw GradeTooHighException();
+	_grade--;
 }
 
 void Bureaucrat::decrementGrade(void)
 {
-	_grade++;
-	if (_grade > 150)
+	if (_grade >= 150)
 		throw GradeTooLowException();
+	_grade++;
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()

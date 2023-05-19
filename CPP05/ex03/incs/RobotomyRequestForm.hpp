@@ -21,6 +21,7 @@ class RobotomyRequestForm : public AForm
 private:
 	std::string	_target;
 	RobotomyRequestForm( void );
+	static int	result;
 
 protected:
 	virtual void	execution ( void ) const;
