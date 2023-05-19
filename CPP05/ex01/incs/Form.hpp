@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:50:12 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/17 17:11:06 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:38:32 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,31 @@ private:
 	bool				_signed;
 	int					_toSign;
 	int					_toExecute;
+	Form( void );
 	
 public:
-	Form( void );
 	Form( Form const &);
 	Form & operator=( Form const & );
 	~Form();
 	
 	Form( std::string, int, int);
+	
 	std::string	getName( void ) const;
 	bool		getSigned( void ) const;
 	int			getToSign( void ) const;
 	int			getToExecute( void ) const;
+	
 	void		beSigned( Bureaucrat );
 
 	class GradeTooHighException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("grade is too high");
-			}
+			virtual const char* what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("grade is too low");
-			}
+			virtual const char* what() const throw();
 	};
 };
 

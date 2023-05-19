@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:09:15 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/17 18:50:06 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:57:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Form::Form( void )
 		_toSign(1),
 		_toExecute(1)
 {
-	// LOG("Form void constructor called");
+	// LOG("Form default constructor called");
 }
 
 Form::Form( Form const & src)
@@ -50,14 +50,15 @@ Form::~Form()
 Form::Form( std::string name, int toSign, int toExecute )
 	:
 		_name(name),
-		_signed(false)
+		_signed(false),
+		_toSign(toSign),
+		_toExecute(toExecute)
 {
+	// LOG("Form named constructor called");
 	if (toSign < 1 || toExecute < 1)
 		throw GradeTooHighException();
 	if (toSign > 150 || toExecute > 150)
 		throw GradeTooLowException();
-	_toSign = toSign;
-	_toExecute = toExecute;
 }
 
 std::string	Form::getName( void ) const
@@ -85,6 +86,16 @@ void	Form::beSigned( Bureaucrat src )
 	if (src.getGrade() > _toSign)
 		throw GradeTooLowException();
 	_signed = true;
+}
+
+const char*	Form::GradeTooHighException::what() const throw()
+{
+	return ("grade is too high");
+}
+
+const char*	Form::GradeTooLowException::what() const throw()
+{
+	return ("grade is too low");
 }
 
 std::ostream & operator<<( std::ostream & out, Form const & src)
