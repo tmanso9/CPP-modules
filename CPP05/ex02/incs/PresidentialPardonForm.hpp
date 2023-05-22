@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 19:09:25 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 13:28:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:44:26 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ private:
 	std::string	_target;
 
 protected:
-	virtual void	execution ( void ) const;
+	virtual void	doSpecific ( void ) const;
 	
 public:
 	PresidentialPardonForm( PresidentialPardonForm const &);

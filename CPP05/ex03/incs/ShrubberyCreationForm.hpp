@@ -22,7 +22,7 @@ private:
 	std::string	_target;
 	ShrubberyCreationForm( void );
 protected:
-	virtual void	execution ( void ) const;
+	virtual void	doSpecific ( void ) const;
 
 public:
 	ShrubberyCreationForm( ShrubberyCreationForm const &);
@@ -32,6 +32,12 @@ public:
 	ShrubberyCreationForm( std::string target);
 
 	std::string		getTarget( void ) const;
+
+	class FileNotCreatedException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	};
 };
 
 #endif // !ShrubberyCreationForm_HPP

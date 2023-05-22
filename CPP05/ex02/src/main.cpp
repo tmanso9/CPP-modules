@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 18:25:58 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:16:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ int	main(void)
 		{
 			std::cerr << "Bureaucrat construction failed because " << e.what() << ".\n";
 		}
-		catch(AForm::FormNotSignedException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
-		}
 	}
 	std::cout << "\n----------------------------------------------------" << std::endl;
 	{
@@ -76,10 +72,6 @@ int	main(void)
 		{
 			std::cerr << "Bureaucrat construction failed because " << e.what() << ".\n";
 		}
-		catch(AForm::FormNotSignedException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
-		}
 	}
 	std::cout << "\n----------------------------------------------------" << std::endl;
 	{
@@ -108,10 +100,6 @@ int	main(void)
 		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << "Bureaucrat construction failed because " << e.what() << ".\n";
-		}
-		catch(AForm::FormNotSignedException& e)
-		{
-			std::cerr << "Form could not be executed because " << e.what() << ".\n";
 		}
 	}
 }

@@ -48,7 +48,7 @@ std::string		RobotomyRequestForm::getTarget( void ) const
 	return _target;
 }
 
-void	RobotomyRequestForm::execution ( void ) const
+void	RobotomyRequestForm::doSpecific ( void ) const
 {
 	std::string	outcomes[2] = \
 				{" has been robotomized.", "'s robotomy has failed."};

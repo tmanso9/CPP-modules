@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 18:22:09 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:39:12 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	main(void)
 		try
 		{
 			AForm	*lol;
-			lol = whoCares.makeForm("lololol", "Daemon");
+			lol = whoCares.makeForm("lolwat", "Nobody");
 			if (!lol)
 				throw AForm::VoidFormException();
 			std::cout << *lol;

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 19:09:06 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 14:46:42 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:44:51 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ std::string		PresidentialPardonForm::getTarget( void ) const
 	return _target;
 }
 
-void	PresidentialPardonForm::execution ( void ) const
+void	PresidentialPardonForm::doSpecific ( void ) const
 {
 	std::cout << "Zaphod Beeblebrox pardoned " << _target << std::endl;
 }

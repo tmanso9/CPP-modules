@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:09:15 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 17:50:53 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:44:47 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	AForm::execute( const Bureaucrat & src ) const
 		throw FormNotSignedException();
 	if ( src.getGrade() > _toExecute)
 		throw GradeTooLowException();
-	execution();
+	doSpecific();
 }
 
 std::ostream & operator<<( std::ostream & out, AForm const & src)

@@ -6,11 +6,12 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:25:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/19 17:29:44 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:26:15 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 Bureaucrat::Bureaucrat( void ) : _name("default"), _grade(150)
 {
@@ -107,6 +108,10 @@ void	Bureaucrat::executeForm( AForm const & form )
 		std::cerr << _name << " couldn't execute " << form.getName() << " because " << e.what() << ".\n";
 	}
 	catch(AForm::FormNotSignedException& e)
+	{
+		std::cerr << _name << " couldn't execute " << form.getName() << " because " << e.what() << ".\n";
+	}
+	catch(ShrubberyCreationForm::FileNotCreatedException& e)
 	{
 		std::cerr << _name << " couldn't execute " << form.getName() << " because " << e.what() << ".\n";
 	}

@@ -24,7 +24,7 @@ private:
 	static int	result;
 
 protected:
-	virtual void	execution ( void ) const;
+	virtual void	doSpecific ( void ) const;
 
 public:
 	RobotomyRequestForm( RobotomyRequestForm const &);
