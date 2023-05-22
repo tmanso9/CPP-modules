@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:18:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/21 20:12:57 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:16:43 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,25 @@
 # include <iostream>
 # include <cctype>
 # include <cstdlib>
+# include <string>
 
 class ScalarConverter
 {
 private:
-public:
 	ScalarConverter(/* args */);
 	ScalarConverter( ScalarConverter const &);
-	~ScalarConverter();
 	ScalarConverter & operator=( ScalarConverter const & );
+
+	static bool	isFloat;
+	static bool	isDouble;
+	static bool	isChar;
+
+	static float	toFloat;
+	static double	toDouble;
+public:
+	~ScalarConverter();
 	
-	void convert( std::string );
+	static void convert( std::string );
 };
 
 #endif

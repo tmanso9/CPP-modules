@@ -6,11 +6,16 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 19:43:26 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/21 20:13:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:17:51 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+bool	ScalarConverter::isFloat = false;
+bool	ScalarConverter::isDouble = false;
+float	ScalarConverter::toFloat;
+double	ScalarConverter::toDouble;
 
 ScalarConverter::ScalarConverter(/* args */)
 {
@@ -37,20 +42,20 @@ ScalarConverter::~ScalarConverter()
 
 void ScalarConverter::convert( std::string toConvert )
 {
-	// if (toConvert.size() == 1 && !isdigit(*toConvert.c_str()))
-	// {
-		std::cout << "char: ";
-		if (std::isprint(std::atoi(toConvert.c_str()))) {
-			std::cout << static_cast<char>(std::atoi(toConvert.c_str())) << std::endl;
+	if (toConvert.find('.') != std::string::npos) {
+		if (toConvert.c_str()[toConvert.size() - 1] == 'f') {
+			isFloat = 1;
+		} else {
+			isDouble = 1;
 		}
-		else {
-			std:: cout << "Non displayable" << std::endl;
-		}
-		std::cout << "int: ";
-		std::cout << static_cast<int>(std::atoi(toConvert.c_str())) << std::endl;
-		std::cout << "float: ";
-		std::cout << static_cast<int>(std::atoi(toConvert.c_str())) << ".0f" << std::endl;
-		std::cout << "double: ";
-		std::cout << static_cast<int>(std::atoi(toConvert.c_str())) << ".0" << std::endl;
-	// }
+	}
+	if (isFloat) {
+		toFloat = std::atof(toConvert.c_str());
+		toDouble = static_cast<double>(toFloat);
+	} else if (isDouble) {
+		toDouble = std::atof(toConvert.c_str());
+		toDouble = static_cast<float>(toFloat);
+	}
+	std::cout << toConvert << ": " << isFloat << " " << isDouble << std::endl;
+	std::cout << toFloat << " " << toDouble << std::endl;
 }
