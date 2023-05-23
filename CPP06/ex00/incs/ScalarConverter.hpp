@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:18:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/22 20:16:43 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/23 17:45:25 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ private:
 
 	static float	toFloat;
 	static double	toDouble;
+	static char		toChar;
+	static int		toInt;
+
+	static void		printResult( char c );
+	static void		printResult( double f );
+	static void		printResult( int i );
 public:
 	~ScalarConverter();
 	
