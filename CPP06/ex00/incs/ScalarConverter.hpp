@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:18:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/23 17:45:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:24:21 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,31 @@
 # include <cctype>
 # include <cstdlib>
 # include <string>
+# include <cmath>
+# include <limits>
+
+# define LOG(x) std::cout << x << std::endl
 
 class ScalarConverter
 {
 private:
-	ScalarConverter(/* args */);
+	ScalarConverter( void );
 	ScalarConverter( ScalarConverter const &);
 	ScalarConverter & operator=( ScalarConverter const & );
-
-	static bool	isFloat;
-	static bool	isDouble;
-	static bool	isChar;
 
 	static float	toFloat;
 	static double	toDouble;
 	static char		toChar;
 	static int		toInt;
 
-	static void		printResult( char c );
-	static void		printResult( double f );
-	static void		printResult( int i );
+	static void		printResult( char );
+	static void		printResult( double );
+	static void		printResult( float );
+	static void		printResult( int );
+	
+	static void		impossiblePrint( bool );
+	static bool		validFormat( std::string );
+	static bool		isLimit( std::string );
 public:
 	~ScalarConverter();
 	

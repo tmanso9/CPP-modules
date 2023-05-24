@@ -6,13 +6,13 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/05/21 19:56:40 by touteiro         ###   ########.fr        #
+#    Updated: 2023/05/24 13:31:13 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ScalarConverter
-CC = c++
-PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+NAME = convert
+CXX = c++
+CXXFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 SRC_FILE = main.cpp ScalarConverter.cpp
 INC_FILES = ScalarConverter.hpp
 
@@ -22,11 +22,11 @@ INC = $(addprefix incs/, $(INC_FILES))
 
 obj/%.o: %.cpp $(INC)
 	@mkdir -p $(@D)
-	$(CC) $(PFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 	@echo "\033[33m[OK]	" $@ "\033[0m"
 
 $(NAME): $(OBJ)
-	@$(CC) $(PFLAGS) $(OBJ) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 	@echo -n "\033[92m[OK]	 "
 	@echo -n $(NAME)
 	@echo " ready to use\033[0m"

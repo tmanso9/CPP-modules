@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/23 18:33:22 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:13:06 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char**argv)
 {
-	if (argc != 2 || !(static_cast<std::string>(argv[1]).size())) {
+	if (argc != 2) {
 		std::cerr << "Wrong arguments!" << std::endl;
 		std::cerr << "Usage: ./ScalarConverter <number to convert>" << std::endl;
 		return 2;

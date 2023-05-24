@@ -6,20 +6,18 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 19:43:26 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/23 18:38:39 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:26:46 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-bool	ScalarConverter::isFloat = false;
-bool	ScalarConverter::isDouble = false;
 float	ScalarConverter::toFloat;
 double	ScalarConverter::toDouble;
 char	ScalarConverter::toChar;
 int		ScalarConverter::toInt;
 
-ScalarConverter::ScalarConverter(/* args */)
+ScalarConverter::ScalarConverter( void )
 {
 	std::cout << "ScalarConverter default constructor called" << std::endl;
 }
@@ -42,25 +40,89 @@ ScalarConverter::~ScalarConverter()
 	std::cout << "ScalarConverter destructor called" << std::endl;
 }
 
-void	ScalarConverter::printResult( char c )
+void ScalarConverter::convert( std::string toConvert )
 {
-	if (isprint(c) && c != ' ') {
-		std::cout << "char:\t'" << c <<"'" << std::endl;
-	} else {
-		std::cout << "char:\t" << "Non displayable" << std::endl;
+	if (toConvert.empty() || \
+		toConvert.find('-') != toConvert.find_last_of('-') || \
+		toConvert.find('+') != toConvert.find_last_of('+') || \
+		toConvert.find('.') != toConvert.find_last_of('.') || \
+		toConvert.find('e') != toConvert.find_last_of('e') || \
+		(toConvert.find('+') != std::string::npos && toConvert.find('-') != std::string::npos)) {
+		impossiblePrint(true);
 	}
-	std::cout << "int:\t" << static_cast<int>(c) << std::endl;
-	std::cout << "float:\t" << static_cast<float>(c) << ".0f" << std::endl;
-	std::cout << "double:\t" << static_cast<double>(c) << ".0" << std::endl;
+	else if (toConvert.size() == 1 && !isdigit(*toConvert.begin())) {
+		printResult(*toConvert.begin());
+	}
+	else if (toConvert.find_first_not_of("0123456789-+") == std::string::npos) {
+		printResult(std::atoi(toConvert.c_str()));
+	}
+	else if (toConvert.find_first_of(".e") != std::string::npos && validFormat(toConvert)) {
+		if (toConvert.find('f') == std::string::npos) {
+			printResult((std::atof(toConvert.c_str())));
+		} else if (toConvert.find('f') == toConvert.size() - 1) {
+			printResult(static_cast<float>(std::atof(toConvert.c_str())));
+		} else {
+			impossiblePrint(true);
+		}
+	}
+	else if ((toConvert.find("inf") != std::string::npos || toConvert.find("nan") != std::string::npos) && \
+				isLimit(toConvert)) {
+		if ((toConvert.find('f') == toConvert.size() - 1 && toConvert.find("nan") == std::string::npos) || \
+			!toConvert.compare("nan")) {
+			printResult((std::atof(toConvert.c_str())));
+		} else {
+			printResult(static_cast<float>(std::atof(toConvert.c_str())));
+		}
+	}
+	else {
+		impossiblePrint(true);
+	}
 }
 
-void	ScalarConverter::printResult( int i )
+bool		ScalarConverter::validFormat( std::string toConvert )
 {
-	toChar = static_cast<char>( i );
-	toInt = i;
-	toFloat = static_cast<float>( i );
-	toDouble = static_cast<double>( i );
-	if (isprint(toChar) && toChar != ' ') {
+	bool	valid = true;
+	size_t	pos;
+	
+	if (toConvert.find_first_not_of("0123456789.ef-+") != std::string::npos) {
+		valid = false;
+	}
+	
+	pos = toConvert.find_first_of(".e");
+	while (pos != std::string::npos && valid == true) {
+		char nextChar = *(toConvert.c_str() + pos + 1);
+		if (!std::isdigit(nextChar) && nextChar != '+' && nextChar != '-') {
+			valid = false;
+		}
+		pos = toConvert.find_first_of(".e", pos + 1);
+	}
+	
+	return valid;
+}
+
+bool	ScalarConverter::isLimit( std::string toConvert )
+{
+	std::string	Limits[8] = {"inf", "+inf", "-inf", "inff", "+inff", "-inff", "nan", "nanf"};
+	
+	for (int i = 0; i < 8; i++) {
+		if (!toConvert.compare(Limits[i].c_str())) {
+			return true;
+		}
+	}
+	
+	return false;
+}
+
+void	ScalarConverter::printResult( char c )
+{
+	LOG("\nDetected a char\n");
+
+	toChar = c;
+	toInt = static_cast<int>( c );
+	toFloat = static_cast<float>( c );
+	toDouble = static_cast<double>( c );
+	
+	if (isprint(toChar)) {
 		std::cout << "char:\t'" << toChar <<"'" << std::endl;
 	} else {
 		std::cout << "char:\t" << "Non displayable" << std::endl;
@@ -70,55 +132,103 @@ void	ScalarConverter::printResult( int i )
 	std::cout << "double:\t" << toDouble << ".0" << std::endl;
 }
 
-void	ScalarConverter::printResult( double f )
+void	ScalarConverter::printResult( int i )
 {
-	toChar = static_cast<char>( f );
-	toInt = static_cast<int>( f );
-	toDouble = static_cast<double>( f );
-	if (isprint(toChar) && toChar != ' ') {
+	LOG("\nDetected an int\n");
+	
+	toChar = static_cast<char>( i );
+	toInt = i;
+	toFloat = static_cast<float>( i );
+	toDouble = static_cast<double>( i );
+	
+	if (isprint(toChar)) {
 		std::cout << "char:\t'" << toChar <<"'" << std::endl;
 	} else {
 		std::cout << "char:\t" << "Non displayable" << std::endl;
 	}
 	std::cout << "int:\t" << toInt << std::endl;
-	std::cout << "float:\t" << f << (f - toInt == 0 ? ".0f" : "f") << std::endl;
-	std::cout << "double:\t" << toDouble << (f - toInt == 0 ? ".0" : "") << std::endl;
+	std::cout << "float:\t" << toFloat << ".0f" << std::endl;
+	std::cout << "double:\t" << toDouble << ".0" << std::endl;
 }
 
-void ScalarConverter::convert( std::string toConvert )
+void	ScalarConverter::printResult( double d )
 {
-	if (toConvert.size() == 1 && !isdigit(*toConvert.c_str())) {
-		printResult(static_cast<char>(*toConvert.c_str()));
+	LOG("\nDetected a double\n");
+	
+	if (std::isnan(d)) {
+		impossiblePrint(false);
 		return ;
-	} else if (toConvert.find('.') != std::string::npos /* || \
-			(!toConvert.compare("-inff") || !toConvert.compare("+inff")) */) {
-		if (toConvert.c_str()[toConvert.size() - 1] == 'f') {
-			printResult((std::atof(toConvert.c_str())));
-		} else {
-			printResult((std::atof(toConvert.c_str())));
-		}
-	} else if (toConvert.find_first_not_of("0123456789-+") == std::string::npos) {
-		printResult(static_cast<int>(std::atoi(toConvert.c_str())));
 	}
-	else {
-		if (!toConvert.compare("nanf") || !toConvert.compare("nan")) {
-			std::cout << "char:\t" << "impossible" << std::endl;
-			std::cout << "int:\t" << "impossible" << std::endl;
-			std::cout << "float:\t" << "nanf" << std::endl;
-			std::cout << "double:\t" << "nan" << std::endl;
-		} else if (!toConvert.compare("-inff") || !toConvert.compare("+inff") || \
-					toConvert.find("+inf")) {
-			std::cout << "char:\t" << "impossible" << std::endl;
-			std::cout << "int:\t" << "impossible" << std::endl;
-			toDouble = std::atof(toConvert.c_str());
-			toFloat = static_cast<float>(toDouble);
-			std::cout << "float:\t" << toFloat << "f" << std::endl;
-			std::cout << "double:\t" << toDouble << std::endl;
-		} else {
-			std::cout << "error: wrong argument" << std::endl;
-		}
-	}
-	if (isFloat || isDouble) {
+	
+	toChar = static_cast<char>( d );
+	toInt = static_cast<int>( d );
+	toFloat = static_cast<double>( d );
+	toDouble = d;
+	
+	bool infinite = std::isinf(toDouble) || \
+					toDouble < std::numeric_limits<int>::min() || \
+					toDouble > std::numeric_limits<int>::max();
 		
+	if (isprint(toChar)) {
+		std::cout << "char:\t'" << toChar <<"'" << std::endl;
+	} else if (infinite) {
+		std::cout << "char:\t" << "impossible" << std::endl;
+	} 
+	else {
+		std::cout << "char:\t" << "Non displayable" << std::endl;
 	}
+	if (infinite) {
+		std::cout << "int:\t" << "impossible" << std::endl;
+	} else {
+		std::cout << "int:\t" << toInt << std::endl;
+	}
+	std::cout << "float:\t" << toFloat << (toDouble - toInt == 0 ? ".0f" : "f") << std::endl;
+	std::cout << "double:\t" << toDouble << (toDouble - toInt == 0 ? ".0" : "") << std::endl;
+}
+
+void	ScalarConverter::printResult( float f )
+{
+	LOG("\nDetected a float\n");
+	
+	if (std::isnan(f)) {
+		impossiblePrint(false);
+		return ;
+	}
+	
+	toChar = static_cast<char>( f );
+	toInt = static_cast<int>( f );
+	toFloat = f;
+	toDouble = static_cast<double>( f );
+	
+	bool infinite = std::isinf(toFloat) || \
+					toFloat < std::numeric_limits<int>::min() || \
+					toFloat > std::numeric_limits<int>::max();;
+	
+	if (isprint(toChar)) {
+		std::cout << "char:\t'" << toChar <<"'" << std::endl;
+	} else if (infinite) {
+		std::cout << "char:\t" << "impossible" << std::endl;
+	} 
+	else {
+		std::cout << "char:\t" << "Non displayable" << std::endl;
+	}
+	if (infinite) {
+		std::cout << "int:\t" << "impossible" << std::endl;
+	} else {
+		std::cout << "int:\t" << toInt << std::endl;
+	}
+	std::cout << "float:\t" << toFloat << (toFloat - toInt == 0 ? ".0f" : "f") << std::endl;
+	std::cout << "double:\t" << toDouble << (toFloat - toInt == 0 ? ".0" : "") << std::endl;
+}
+
+void	ScalarConverter::impossiblePrint( bool error )
+{
+	if (error) {
+		LOG("\nDetected invalid type\n");
+	}
+	
+	std::cout << "char:\t" << "impossible" << std::endl;
+	std::cout << "int:\t" << "impossible" << std::endl;
+	std::cout << "float:\t" << (error ? "impossible" : "nanf") << std::endl;
+	std::cout << "double:\t" << (error ? "impossible" : "nan") << std::endl;
 }
