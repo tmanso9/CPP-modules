@@ -6,16 +6,21 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:00:00 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/24 17:24:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:24:39 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERIALIZER_HPP
 # define SERIALIZER_HPP
 
-# include "Data.hpp"
 # include <stdint.h>
 # include <iostream>
+
+struct Data
+{
+	int 	n;
+	char	c;
+};
 
 class Serializer
 {

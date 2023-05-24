@@ -6,15 +6,15 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/05/24 17:31:17 by touteiro         ###   ########.fr        #
+#    Updated: 2023/05/24 19:24:52 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Serializer
 CXX = c++
 CXXFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
-SRC_FILE = main.cpp Serializer.cpp Data.cpp
-INC_FILES = Serializer.hpp Data.hpp
+SRC_FILE = main.cpp Serializer.cpp
+INC_FILES = Serializer.hpp
 
 SRC = $(addprefix src/, $(SRC_FILE))
 OBJ = $(addprefix obj/, $(SRC:.cpp=.o))

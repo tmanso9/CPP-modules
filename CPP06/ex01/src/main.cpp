@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/24 17:29:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:27:00 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 int	main(void)
 {
-	Data		*original = new Data(1500);
+	Data		*original = new Data;
 	uintptr_t	serialized;
 	Data		*finalRes;
 	
-	std::cout << "Original pointer:\t" << original << std::endl;
-	std::cout << "Original value:\t" << original->getData() << std::endl;
+	original->n = 65;
+	original->c = 'r';
+	std::cout << "Original pointer:\t\t" << original << std::endl;
+	std::cout << "Original values:\t\t" << original->n << "\t" << original->c << std::endl;
 
 	serialized = Serializer::serialize(original);
 	finalRes = Serializer::deserialize(serialized);
 	std::cout << "Pointer after serializer:\t" << finalRes << std::endl;
-	std::cout << "Value after serializer:\t" << finalRes->getData() << std::endl;
+	std::cout << "Values after serializer:\t" << finalRes->n << "\t" << finalRes->c << std::endl;
 	
 	delete original;
 }
