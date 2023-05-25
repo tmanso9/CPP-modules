@@ -6,15 +6,13 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/25 19:26:23 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/25 19:35:27 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-#include "Max.hpp"
-#include "Min.hpp"
-#include "Swap.hpp"
+#include "whatever.hpp"
 
 int	main(void)
 {

@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/05/25 19:23:30 by touteiro         ###   ########.fr        #
+#    Updated: 2023/05/25 19:30:15 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Templates
 CXX = c++
 CXXFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 SRC_FILE = main.cpp
-INC_FILES = Swap.hpp Max.hpp Min.hpp
+INC_FILES = whatever.hpp
 
 SRC = $(addprefix src/, $(SRC_FILE))
 OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
