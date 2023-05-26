@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 11:10:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/26 17:38:12 by touteiro         ###   ########.fr       */
+/*   Created: 2023/05/26 17:36:47 by touteiro          #+#    #+#             */
+/*   Updated: 2023/05/26 17:37:05 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-# define ITER_HPP
-
-# include "utils.hpp"
-# include <cstddef>
+# include <iostream>
 
 template<typename T>
-void	iter(T *arr, std::size_t len, void(*f)(T &)){
-	for (std::size_t i = 0; i < len; i++) {
-		f(arr[i]);
-	}
+void	printVal( T & data ){
+	std::cout << data << "\t";
 }
 
-#endif
+template<typename T>
+void	timesTwo( T & data ){
+	data *= 2;
+}

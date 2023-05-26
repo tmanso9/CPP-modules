@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/05/26 11:35:19 by touteiro         ###   ########.fr        #
+#    Updated: 2023/05/26 17:37:40 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Iter
 CXX = c++
 CXXFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 SRC_FILE = main.cpp
-INC_FILES = iter.hpp
+INC_FILES = iter.hpp utils.hpp
 
 SRC = $(addprefix src/, $(SRC_FILE))
 OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
