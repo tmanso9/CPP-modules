@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:41:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/26 13:38:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:03:04 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ public:
 		return *this;
 	}
 	
-	T & operator[](unsigned int n){
-		if (n < 0 || n >= _size) {
+	T & operator[]( int n ){
+		if (n < 0 || n >= static_cast<int>(_size)) {
 			throw outOfBoundsException();
 		}
 		return _arr[n];
 	}
 
-	T & operator[](unsigned int n) const{
-		if (n < 0 || n >= _size) {
+	T & operator[]( int n ) const{
+		if (n < 0 || n >= static_cast<int>(_size)) {
 			throw outOfBoundsException();
 		}
 		return _arr[n];

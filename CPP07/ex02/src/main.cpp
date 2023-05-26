@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/26 13:55:45 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:00:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ int	main(void)
 		Array<float>	a(42);
 		std::cout << "Array size: " << a.size() << std::endl;
 		
-		
+		float	*b = new float[42];
 		try
 		{
 			LOG("Comparing values with another float array of size 42...");
-			float	*b = new float[42];
 			unsigned int i = 0;
 			for (; i < 42 ; i++) {
 				if (a[i] != b[i]) {
@@ -54,6 +53,7 @@ int	main(void)
 		{
 			std::cerr << e.what() << '\n';
 		}
+		delete [] b;
 	}
 	{
 		LOG("\n---Testing copy constructors and assignment operator---");
