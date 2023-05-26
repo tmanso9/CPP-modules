@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/26 14:00:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:09:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	main(void)
 		float	*b = new float[42];
 		try
 		{
-			LOG("Comparing values with another float array of size 42...");
+			LOG("Comparing initial values with another float array of size 42...");
 			unsigned int i = 0;
-			for (; i < 42 ; i++) {
+			for (; i < a.size() ; i++) {
 				if (a[i] != b[i]) {
 					std::cerr << i << ":\tUps, initialized with wrong number" << std::endl;
 					break ;
 				}
 			}
-			if (i == 42) {
+			if (i == a.size()) {
 				std::cout << "[ OK ]" << std::endl;
 			}
 		}
@@ -66,13 +66,13 @@ int	main(void)
 		{
 			LOG("Checking initial values...");
 			unsigned int i = 0;
-			for (; i < 4 ; i++) {
+			for (; i < a.size() ; i++) {
 				if (b[i] != a[i] || c[i] != a[i]) {
 					std::cerr << i << ":\tUps, initialized with wrong number" << std::endl;
 					break ;
 				}
 			}
-			if (i == 4) {
+			if (i == a.size()) {
 				std::cout << "[ OK ]" << std::endl;
 			}
 		}
@@ -95,9 +95,30 @@ int	main(void)
 		{
 			std::cerr << e.what() << '\n';
 		}
+		
+		try
+		{
+			LOG("Now value check will be wrong");
+			unsigned int i = 0;
+			for (; i < a.size() ; i++) {
+				if (b[i] != a[i] || c[i] != a[i]) {
+					std::cerr << "index " << i << ":\tValues are different" << std::endl;
+					break ;
+				}
+			}
+			if (i == a.size()) {
+				std::cout << "[ OK ]" << std::endl;
+			}
+			
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		
 	}
 	{
-		LOG("\n---Testing [] operator---");
+		LOG("\n---Testing [] operator with string array of size 512---");
 		Array<std::string>	a(512);
 		
 		try
@@ -124,6 +145,7 @@ int	main(void)
 		{
 			std::cout << "a[67] = ";
 			std::cout << a[67] << std::endl;
+			LOG("If value is changed to 'Hello world':");
 			a[67] = "Hello world";
 			std::cout << "a[67] = ";
 			std::cout << a[67] << std::endl;
