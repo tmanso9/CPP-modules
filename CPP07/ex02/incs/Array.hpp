@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:41:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/26 13:05:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:38:19 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ public:
 
 	/* Operators */
 	Array<T> & operator=( const Array & src ) {
-		LOG("Array assignment overload called");
+		// LOG("Array assignment operator called");
 		if (this != &src) {
 			delete [] _arr;
 			_size = src.size();
