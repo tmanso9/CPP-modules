@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:25 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/28 23:33:55 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/29 00:38:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <cstdlib>
 # include <algorithm>
 # include <numeric>
+# include <climits>
 
 class Span
 {
