@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:22:52 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/29 00:25:56 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:33:51 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void	Span::addNumber( int newNumber )
 */
 void	Span::addNumber( int lowest, int highest )
 {
+	if (_arr.size() == N) {
+		throw fullArrException();
+	}
 	unsigned int	inUse = _arr.size();
 	int calcHi = highest - lowest + 1;
 	for (unsigned int i = 0; i < N && inUse++ < N ; i++) {
@@ -63,6 +66,9 @@ void	Span::addNumber( int lowest, int highest )
 }
 
 void	Span::addNumber( std::vector<int>::iterator begin, std::vector<int>::iterator end ) {
+	if (_arr.size() == N) {
+		throw fullArrException();
+	}
 	unsigned int	inUse = _arr.size();
 	for (; (begin < end && inUse++ < N); begin++) {
 		addNumber(*begin);
