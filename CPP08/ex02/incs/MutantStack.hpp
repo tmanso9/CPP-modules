@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:41:22 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/30 16:36:26 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:05:35 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ template<typename T>
 class MutantStack : public std::stack<T>
 {
 public:
-	MutantStack<T>(/* args */) {};
+	MutantStack<T>() {};
 	~MutantStack(){};
 
 	struct iterator {
@@ -33,7 +33,10 @@ public:
 
 		T& operator*() const { return *m_ptr; };
 		iterator& operator--() { m_ptr++; return *this; };
-		iterator & operator++() { m_ptr--; return *this; };
+		iterator & operator++() {
+			m_ptr--;
+			return *this;
+		};
 		iterator operator--(T none) {
 			(void)none;
 			iterator tmp = *this;
