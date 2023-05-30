@@ -6,12 +6,13 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/30 20:08:53 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:31:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <list>
+#include <string>
 
 # define LOG(x) std::cout << x << std::endl;
 
@@ -51,14 +52,14 @@ int	main(void)
 		ltest.push_back(5);
 		ltest.push_back(737);
 		ltest.push_back(0);
-		std::list<int>::iterator it2 = --ltest.end()--;
-		std::list<int>::iterator ite2 = --ltest.begin();
+		std::list<int>::iterator it2 = ltest.begin();
+		std::list<int>::iterator ite2 = ltest.end();
 		++it2;
 		--it2;
 		while (it2 != ite2)
 		{
 			std::cout << *it2 << std::endl;
-			--it2;
+			++it2;
 		}
 	}
 	{
@@ -72,21 +73,43 @@ int	main(void)
 
 		MutantStack<int>::iterator it = a.begin();
 		MutantStack<int>::iterator it2 = it;
-		MutantStack<int>::iterator ite = a.end();
 		it++;
 		it--;
-		for (; it2 != ite; it2++) {
+		for (; it2 != a.end(); it2++) {
 			std::cout << *it2 << " ";
 		}
 		std::cout << std::endl;
 		a.pop();
-		it = a.begin();
-		for (; it != ite; it++) {
+		for (; it != a.end(); it++) {
 			std::cout << *it << " ";
 		}
-		// LOG("");
-		// LOG(*(++it));
-		// std::cout << *it;
+		std::cout << std::endl;
+		a.push(33);
+		a.push(-33);
+		a.push(330);
+		a.push(3300);
+		a.push(33333);
+		it = a.begin();
+		for (; it != a.end(); it++) {
+			std::cout << *it << " ";
+		}
+
+		std::cout << std::endl;
+		MutantStack<int>::reverse_iterator rit = a.rbegin();
+		for (; rit != a.rend(); rit++) {
+			std::cout << *rit << " ";
+		}
+
+		MutantStack<std::string> S;
+		S.push("oi");
+		S.push("teste");
+		S.push("jehdvjsh jdscgjh");
+
+		std::cout << std::endl;
+		MutantStack<std::string>::const_iterator Sit = S.begin();
+		for (; Sit != S.end(); Sit++) {
+			std::cout << *Sit << "\t";
+		}
 	}
 	
 }
