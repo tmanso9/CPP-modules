@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:41:22 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/30 21:27:44 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:27:43 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,42 +25,6 @@ class MutantStack : public std::stack<T>
 public:
 	MutantStack<T>() {};
 	~MutantStack(){};
-
-	/* struct iterator {
-
-		iterator() : m_ptr(NULL){};
-		iterator( T* ptr ) : m_ptr(ptr){};
-
-		T& operator*() const { return *m_ptr; };
-		iterator& operator--() { m_ptr++; return *this; };
-		iterator & operator++() {
-			m_ptr--;
-			return *this;
-		};
-		iterator operator--(T none) {
-			(void)none;
-			iterator tmp = *this;
-			--(*this);
-			return (tmp);
-		};
-		iterator operator++(T none) {
-			(void)none;
-			iterator tmp = *this;
-			++(*this);
-			return (tmp);
-		};
-
-		bool operator!=( const iterator & other ) {
-			return this->m_ptr != other.m_ptr;
-		}
-
-		bool operator==( const iterator & other ) {
-			return this->m_ptr == other.m_ptr;
-		}
-
-		private:
-			T* m_ptr;
-	}; */
 
 	typedef typename std::stack<T>::container_type::iterator iterator;
 	typedef typename std::stack<T>::container_type::const_iterator const_iterator;

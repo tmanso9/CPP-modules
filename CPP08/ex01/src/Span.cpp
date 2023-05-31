@@ -6,13 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:22:52 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/29 18:33:51 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:17:19 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-
-unsigned int	Span::_shortest = INT_MAX;
 
 Span::Span( void ) : N(0)
 {
@@ -85,19 +83,12 @@ unsigned int	Span::shortestSpan( void )
 	if (_arr.size() < 2) {
 		throw noSpanException();
 	}
+	
 	std::vector<int> temp = _arr;
 	std::sort(temp.begin(), temp.end());
+	
 	std::vector<int> res;
 	std::adjacent_difference(temp.begin(), temp.end(), std::back_inserter(res));
-	// if (res.begin() + 1 == res.end()) {
-	// 	return res.front();
-	// }
-	// std::cout << "here ";
-	// for (std::vector<int>::iterator it = temp.begin() + 1; it != temp.end(); it++) {
-	// 	std::cout << *it;
-	// }
-	// std::cout << std::endl;
-	// std::cout << "here2 " <<  *(std::min_element(res.begin() + 1, res.end())) << std::endl;
 	return *(std::min_element(res.begin() + 1, res.end()));
 }
 

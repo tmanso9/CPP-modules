@@ -6,24 +6,23 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:25 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/29 00:38:44 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:17:11 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
-# include <vector>
 # include <iostream>
 # include <cstdlib>
 # include <algorithm>
 # include <numeric>
 # include <climits>
+# include <vector>
 
 class Span
 {
 private:
-	static unsigned int	_shortest;
 	unsigned int		N;
 	std::vector<int>	_arr;
 public:

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/29 18:35:33 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:26:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int	main(void)
 		std::cout << "\n<Filling a full array>" << std::endl;
 		Span wrong = Span(10);
 		wrong.addNumber(54, 85);
+		std::cout << "First time worked" << std::endl;
 		wrong.addNumber(54, 85);
+		std::cout << "Second time worked" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -132,7 +134,7 @@ int	main(void)
 	try
 	{
 		std::cout << "\t[Big random ints array -- added with range]" << std::endl << std::endl;
-		sp.addNumber(-850000, 470000);
+		sp.addNumber(-10, 0);
 		if (sp.getArr().size()) {
 			std::cout << "array size:\t" << sp.getArr().size() << std::endl;
 			std::cout << "max value:\t" << *std::max_element(sp.getArr().begin(), sp.getArr().end()) << std::endl;
