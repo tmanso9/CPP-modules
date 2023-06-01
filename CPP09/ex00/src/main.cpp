@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:35:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/31 19:31:47 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:41:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@
 
 int	main(void)
 {
-	BitcoinExchange	a;
+	BitcoinExchange	a("src/data.csv");
 }
