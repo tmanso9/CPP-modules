@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:28:47 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/01 17:25:29 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:48:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fstream>
 # include <string>
 # include <cstdlib>
+# include <exception>
 # include <map>
 
 class BitcoinExchange
@@ -28,6 +29,11 @@ public:
 	~BitcoinExchange();
 
 	bool checkDate( std::string );
+	class badInputException : public std::exception
+	{
+		public:
+			virtual const char * what() const throw();
+	};
 
 private:
 	std::map<std::string, float>	data;
