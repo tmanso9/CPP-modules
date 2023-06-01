@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:28:47 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/01 17:00:04 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:25:29 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ public:
 	BitcoinExchange();
 	BitcoinExchange( std::string filename );
 	~BitcoinExchange();
+
+	bool checkDate( std::string );
 
 private:
 	std::map<std::string, float>	data;
