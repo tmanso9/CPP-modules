@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:28:47 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/03 22:36:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:20:31 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ private:
 	static void processFile( std::string );
 	
 	static bool validDate( std::string );
+	static bool validValue( std::string );
 	static void checkLine( std::string );
 public:
 	~BitcoinExchange();

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:32:33 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/03 22:39:47 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:34:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,18 @@ void	BitcoinExchange::convert( std::string filename )
 	{
 		std::cerr << e.what() << " data.csv\n";
 	}
+	
+	if (_dbFile.is_open()) {
+		_dbFile.close();
+	}
+	if (_convertFile.is_open()) {
+		_convertFile.close();
+	}
 }
 
 void	BitcoinExchange::buildDB( void )
 {
-	_dbFile = std::ifstream("data.csv", std::ifstream::in);
+	std::ifstream _dbFile("data.csv", std::ifstream::in);
 	if (!_dbFile.is_open()) {
 		throw cantOpenException();
 	}
@@ -78,15 +85,14 @@ void	BitcoinExchange::buildDB( void )
 			std::cerr << "Line " << i << ": Wrong date: " << line << std::endl;
 			throw invalidDBException();
 		}
-		if (val.find_first_not_of("+-0123456789.f") != std::string::npos) {
+		if (!validValue(val)) {
 			std::cerr << "Line " << i << ": Wrong value: " << line << std::endl;
 			throw invalidDBException();
 		}
-		_database[date] = strtof(val.c_str(), nullptr);
+		_database[date] = strtof(val.c_str(), NULL);
 		i++;
 	}
 	
-	_dbFile.close();
 }
 
 bool BitcoinExchange::validDate( std::string date )
@@ -111,11 +117,27 @@ bool BitcoinExchange::validDate( std::string date )
 	return true;
 }
 
+bool BitcoinExchange::validValue( std::string val )
+{
+	if (val.empty() || \
+	val.find_first_not_of("+-0123456789.ef") != std::string::npos || \
+	val.find('+') != val.find_last_of('+') || \
+	val.find('-') != val.find_last_of('-') || \
+	val.find('.') != val.find_last_of('.') || \
+	val.find('e') != val.find_last_of('e') || \
+	(val.find('f') != std::string::npos && val.find('f') != val.size() - 1) || \
+	(val.find('+') != std::string::npos && val.find('-') != std::string::npos)) {
+		return false;
+	}
+	
+	return true;
+}
+
 void BitcoinExchange::processFile( std::string filename )
 {
 	try
 	{
-		_convertFile = std::ifstream(filename, std::ifstream::in);
+		std::ifstream _convertFile(filename.c_str(), std::ifstream::in);
 		if (!_convertFile.is_open()) {
 			throw cantOpenException();
 		}
@@ -130,7 +152,7 @@ void BitcoinExchange::processFile( std::string filename )
 			try
 			{
 				checkLine(line);
-				std::cout << _date << " => " << _val << " = " << \
+				std::cout << _date << " => " << _val << " = " << std::setprecision(7) <<\
 				(_database.count(_date) ? \
 				_database.lower_bound(_date)->second * _floatVal: \
 				(--_database.lower_bound(_date))->second * _floatVal) << \
@@ -149,12 +171,13 @@ void BitcoinExchange::processFile( std::string filename )
 				std::cerr << e.what() <<  '\n';
 			}
 		}
-		_convertFile.close();
 	}
 	catch ( const std::exception & e )
 	{
 		std::cerr << e.what() << " " << filename << std::endl;
 	}
+	
+	
 }
 
 void BitcoinExchange::checkLine( std::string line )
@@ -165,10 +188,10 @@ void BitcoinExchange::checkLine( std::string line )
 	}
 	_date = line.substr(0, sep - 1);
 	_val = line.substr(sep + 2);
-	if (!validDate(_date) || _val.find_first_not_of("+-0123456789.f") != std::string::npos) {
+	if (!validDate(_date) || !validValue(_val)) {
 		throw badInputException();
 	}
-	_floatVal = strtof(_val.c_str(), nullptr);
+	_floatVal = strtof(_val.c_str(), NULL);
 	if (_floatVal < 0) {
 		throw negativeNumberException();
 	}
