@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:47:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/05 16:54:07 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:58:47 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RPN_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <sstream>
 # include <cstdlib>
@@ -26,18 +27,17 @@ class RPN
 		RPN( RPN const & );
 		RPN & operator=( RPN const & );
 		
-		static std::stack<int> _operands;
-		static int			_res;
-		static int			_modifier;
-		static std::string	_tokens;
-		static int (*funcs[4])( int, int );
+		static std::stack<float>	_operands;
+		static std::string			_tokens;
+		static float (*funcs[4])( float, float );
 
-		static void	doOp( std::string );
-		static int	add( int, int );
-		static int	subtract( int, int );
-		static int	multiply( int, int );
-		static int	divide( int, int );
+		static void		doOp( std::string );
+		static float	add( float, float );
+		static float	subtract( float, float );
+		static float	multiply( float, float );
+		static float	divide( float, float );
 
+		static void	checkErrs( std::string );
 		static void	errOut( std::string );
 		
 	public:
