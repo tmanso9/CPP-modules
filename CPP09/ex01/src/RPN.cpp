@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:51:34 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/06 17:03:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:46:43 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void RPN::calc( std::string input )
 	std::string word;
 
 	while ( ss >> word ) {
-		if (input.find_first_of("0123456789") == std::string::npos && word.size() > 1) {
+		if ((input.find_first_of("0123456789") == std::string::npos || \
+		(input.find_first_of("0123456789") != std::string::npos && input.find_first_of("*/") == 0)) && word.size() > 1) {
 			errOut(", invalid token");
 		} else if (_tokens.find(word) != std::string::npos ) {
 			doOp(word);
