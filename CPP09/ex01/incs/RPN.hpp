@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:47:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/05 17:58:47 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:03:27 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class RPN
 		
 		static std::stack<float>	_operands;
 		static std::string			_tokens;
-		static float (*funcs[4])( float, float );
+		static float (*ops[4])( float, float );
 
 		static void		doOp( std::string );
 		static float	add( float, float );

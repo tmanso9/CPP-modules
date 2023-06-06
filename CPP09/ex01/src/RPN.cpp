@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:51:34 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/05 17:59:40 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:03:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void RPN::checkErrs( std::string input )
 	if (input.empty()) {
 		errOut("");
 	}
-	if (input.find_last_not_of("0123456789+-/* ") != std::string::npos) {
+	if (input.find_first_not_of("0123456789+-/* ") != std::string::npos) {
 		errOut(", invalid token");
 	}
 	if (input.find_first_of("+-*/") == std::string::npos) {
@@ -80,7 +80,7 @@ void RPN::doOp( std::string op ) {
 	_operands.pop();
 	float original = _operands.top();
 	_operands.pop();
-	_operands.push(funcs[_tokens.find(op)](original, modifier));
+	_operands.push(ops[_tokens.find(op)](original, modifier));
 }
 
 float RPN::add( float original, float n )
@@ -112,7 +112,7 @@ void RPN::errOut( std::string msg )
 	exit(2) ;
 }
 
-float					(*RPN::funcs[4])( float, float ) = {
+float					(*RPN::ops[4])( float, float ) = {
 	&RPN::add,
 	&RPN::subtract,
 	&RPN::multiply,
