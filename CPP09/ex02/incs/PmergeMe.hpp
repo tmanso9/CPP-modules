@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:53:08 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/06 02:08:45 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:05:00 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,32 @@ private:
 	static std::vector<std::pair<int, int> > _vectPairs;
 
 	static void parseInput( std::vector<std::string> );
-	static void mergeInsertVect( std::vector<int> & );
+	static void mergeInsertVect( void );
 	static void mergeInsertList( void );
+
+	template <typename T>
+	static bool checkSorted( T & arr )
+	{
+		typename T::iterator it = arr.begin();
+		for (; it != arr.end(); it++){
+			int temp = *it;
+			if (++it != arr.end()) {
+				if (*it < temp) {
+					return false;
+				}
+			}
+			--it;
+		}
+		return true;
+	}
 	
 	template <typename T>
 	static void printSequence( T & arr )
 	{
+		bool unlimited = false;
 		typename T::iterator it = arr.begin();
 		size_t i = 1;
-		for (; i < 15 && i < arr.size(); i++) {
+		for (; (i < 15 || unlimited) && i < arr.size(); i++) {
 			std::cout << *it++ << " ";
 		}
 		if (i < arr.size()) {
