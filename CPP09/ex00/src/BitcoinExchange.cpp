@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:32:33 by touteiro          #+#    #+#             */
-/*   Updated: 2023/06/05 14:34:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:40:49 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,13 @@ void BitcoinExchange::processFile( std::string filename )
 			try
 			{
 				checkLine(line);
+				int exists = _database.count(_date);
+				if (!exists && _database.lower_bound(_date) == _database.begin()) {
+					std::cerr << "Error: " << _date << " is older than acceptable" << std::endl;
+					continue ;
+				}
 				std::cout << _date << " => " << _val << " = " << std::setprecision(7) <<\
-				(_database.count(_date) ? \
+				( exists ? \
 				_database.lower_bound(_date)->second * _floatVal: \
 				(--_database.lower_bound(_date))->second * _floatVal) << \
 				std::endl;
