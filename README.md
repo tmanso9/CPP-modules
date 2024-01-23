@@ -1,0 +1,3 @@
+- **Description**: Various C++ modules covering different aspects of the language.
+- **Language**: C++
+- **How to run**: inside each folder run make to compile, run executables
